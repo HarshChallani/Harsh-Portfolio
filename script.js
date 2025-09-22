@@ -1,82 +1,63 @@
-let users = JSON.parse(localStorage.getItem("users")) || {};
-
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
-  // attach handlers only if those elements exist on the page
-  const registerBtn = document.getElementById('registerBtn');
-  if (registerBtn) registerBtn.addEventListener('click', registerUser);
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const profileUsernameSpan = document.getElementById('profileUsername');
 
-  const loginBtn = document.getElementById('loginBtn');
-  if (loginBtn) loginBtn.addEventListener('click', validateLogin);
+    // Handle Registration
+    if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
 
-  // populate profile username if on profile page
-  const profileUsername = document.getElementById('profileUsername');
-  if (profileUsername) {
-    const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) {
-      // not logged in — send to login page
-      window.location.href = 'login.html';
-    } else {
-      profileUsername.textContent = currentUser;
+            // Check if user already exists
+            if (localStorage.getItem(username)) {
+                alert('Username already exists. Please choose another.');
+                return;
+            }
+
+            // Save user to local storage
+            localStorage.setItem(username, password);
+            alert('Registration successful! You can now log in.');
+            window.location.href = 'login.html';
+        });
     }
-  }
+
+    // Handle Login
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const storedPassword = localStorage.getItem(username);
+
+            if (storedPassword && storedPassword === password) {
+                // Successful login
+                localStorage.setItem('loggedInUser', username);
+                alert('Login successful!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Invalid username or password.');
+            }
+        });
+    }
+
+    // Check login status for index.html
+    if (profileUsernameSpan) {
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser) {
+            profileUsernameSpan.textContent = loggedInUser;
+        } else {
+            // No user logged in, redirect to login page
+            window.location.href = 'login.html';
+        }
+    }
 });
 
-// Register function
-function registerUser() {
-  const username = (document.getElementById('newUsername')?.value || '').trim();
-  const password = document.getElementById('newPassword')?.value || '';
-  const messageEl = document.getElementById('message');
-
-  if (!username || !password) {
-    messageEl.style.color = 'red';
-    messageEl.textContent = 'Please fill in all fields.';
-    return;
-  }
-
-  const users = JSON.parse(localStorage.getItem('users') || '{}');
-  if (users[username]) {
-    messageEl.style.color = 'red';
-    messageEl.textContent = 'Username already exists. Choose another.';
-    return;
-  }
-
-  users[username] = password; // NOTE: for learning only. Don't store plaintext passwords in production.
-  localStorage.setItem('users', JSON.stringify(users));
-  messageEl.style.color = 'green';
-  messageEl.textContent = 'Registration successful. Redirecting to login...';
-  setTimeout(() => { window.location.href = 'login.html'; }, 900);
+// Logout function
+function logout() {
+    localStorage.removeItem('loggedInUser');
+    alert('You have been logged out.');
+    window.location.href = 'login.html';
 }
-window.registerUser = registerUser; // expose globally (compat with inline onclick if present)
-
-// Login function (works with login.html below)
-function validateLogin() {
-  const username = (document.getElementById('username')?.value || '').trim();
-  const password = document.getElementById('password')?.value || '';
-  const messageEl = document.getElementById('message');
-
-  if (!username || !password) {
-    messageEl.style.color = 'red';
-    messageEl.textContent = 'Please fill in all fields.';
-    return;
-  }
-
-  const users = JSON.parse(localStorage.getItem('users') || '{}');
-  if (users[username] && users[username] === password) {
-    localStorage.setItem('currentUser', username);
-    window.location.href = 'Profile.html';
-  } else {
-    messageEl.style.color = 'red';
-    messageEl.textContent = 'Invalid username or password.';
-  }
-}
-window.validateLogin = validateLogin;
-
-// Logout function used by Profile.html
-window.logout = function() {
-  localStorage.removeItem('currentUser');
-  window.location.href = 'login.html';
-};
-
-
-
