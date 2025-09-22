@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Register</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-    .container { width: 300px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
-    input { width: 100%; padding: 8px; margin: 10px 0; }
-    button { width: 100%; padding: 10px; background-color: green; color: white; border: none; cursor: pointer; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Student Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Register</h2>
-    <input id="newUsername" type="text" placeholder="Username" />
-    <input id="newPassword" type="password" placeholder="Password" />
-    <!-- type="button" prevents accidental form-submit reloads -->
-    <button id="registerBtn" type="button">Register</button>
-    <p id="message" style="color:red"></p>
-    <p>Already have an account? <a href="login.html">Login here</a></p>
-  </div>
-
-  <!-- make sure this file is named exactly script.js and is in the same folder -->
-  <script src="script.js" defer></script>
+    <div class="container">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <label for="regUsername">Username:</label>
+            <input type="text" id="regUsername" name="username" required>
+            
+            <label for="regPassword">Password:</label>
+            <input type="password" id="regPassword" name="password" required>
+            
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
-
