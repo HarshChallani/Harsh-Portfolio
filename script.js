@@ -36,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Successful login
                 localStorage.setItem('loggedInUser', username);
                 alert('Login successful!');
-                window.location.href = 'index.html';
+                window.location.href = 'profile.html'; // Redirect to the profile page
             } else {
                 alert('Invalid username or password.');
             }
         });
     }
 
-    // Check login status for index.html
+    // Check login status for profile.html
     if (profileUsernameSpan) {
         const loggedInUser = localStorage.getItem('loggedInUser');
         if (loggedInUser) {
