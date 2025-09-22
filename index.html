@@ -1,54 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 100px;
-      background-color: #f4f4f4;
-    }
-    .container {
-      width: 400px;
-      margin: auto;
-      padding: 30px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      background: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #0a66c2;
-    }
-    p {
-      margin: 15px 0;
-    }
-    a {
-      display: inline-block;
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      background-color: #0a66c2;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    a:hover {
-      background-color: #004a99;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>S. Harsh Challani - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome</h1>
-    <p>Please choose an option below:</p>
-    <a href="login.html">Login</a>
-    <a href="register.html">Register</a>
-  </div>
+
+    <div class="container">
+        <h2>Welcome, <span id="profileUsername"></span>!</h2>
+
+        <h1>S. Harsh Challani</h1>
+        <h2>Cybersecurity Student | Aspiring Web Developer</h2>
+
+        <h3>About Me</h3>
+        <p>S. Harsh Challani, a Cybersecurity student with a passion for building secure and user-friendly web experiences. I'm curious, driven, and constantly exploring new technologies to stay ahead in the digital world.</p>
+        <img src="S.HarshChallani.jpg" alt="S. Harsh Challani">
+
+        <h3>Education</h3>
+        <table>
+            <tr>
+                <th>Degree</th>
+                <th>Institution</th>
+                <th>Year</th>
+            </tr>
+            <tr>
+                <td>BCA (Cybersecurity)</td>
+                <td>Hindustan Institute of Technology And Science</td>
+                <td>2022–2025</td>
+            </tr>
+        </table>
+
+        <h3>Skills</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Cybersecurity Fundamentals</li>
+            <li>Team Collaboration</li>
+        </ul>
+
+        <h3>Projects</h3>
+        <h4>1. Personal Portfolio Website</h4>
+        <p>A responsive website showcasing my skills, education, and projects.</p>
+        <a href="https://github.com/harshchallani/portfolio">View on GitHub</a>
+
+        <h3>Contact Information</h3>
+        <p>Email: <a href="mailto:challaniharsh@gmail.com">challaniharsh@gmail.com</a></p>
+        <p>Phone: ‪+91-8489210511</p>
+        <p>Address: No: 71, 2nd street, TNHB Colony, Korattur, Chennai-600050 </p>
+
+        <footer>
+            <p>© 2025 S. Harsh Challani</p>
+        </footer>
+        <button onclick="logout()">Logout</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
-
-
